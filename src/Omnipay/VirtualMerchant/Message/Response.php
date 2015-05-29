@@ -16,17 +16,14 @@ class Response extends AbstractResponse
     {
         $this->request = $request;
         $this->raw = (string) $data;
-        
+
         $this->data = array();
         if ($data && count($data)) {
-            foreach (explode("\n", $data) as $i) 
-            {
+            foreach (explode("\n", $data) as $i) {
                 list ($k, $v) = explode("=", $i);
                 $this->data[$k] = $v;
             }
-        }
-        else 
-        {
+        } else {
             throw new InvalidResponseException();
         }
     }
@@ -38,45 +35,45 @@ class Response extends AbstractResponse
 
     public function getCode()
     {
-        return $this->value_for('ssl_result');
+        return $this->valueFor('ssl_result');
     }
 
     public function getReasonCode()
     {
-        return $this->value_for('ssl_result_message');
+        return $this->valueFor('ssl_result_message');
     }
 
     public function getMessage()
     {
-        return $this->value_for('errorMessage');
+        return $this->valueFor('errorMessage');
     }
-    
+
     public function getErrorCode()
     {
-        return $this->value_for('errorCode');
+        return $this->valueFor('errorCode');
     }
-    
+
     public function getErrorName()
     {
-        return $this->value_for('errorName');
+        return $this->valueFor('errorName');
     }
-    
+
     public function getAvsCode()
     {
-        return $this->value_for('ssl_avs_response');
+        return $this->valueFor('ssl_avs_response');
     }
 
     public function getTransactionReference()
     {
-        return $this->value_for('ssl_txn_id');
+        return $this->valueFor('ssl_txn_id');
     }
 
     public function data()
     {
         return $this->data;
     }
-    
-    private function value_for($key)
+
+    private function valueFor($key)
     {
         return isset($this->data[$key]) ? $this->data[$key] : '';
     }
