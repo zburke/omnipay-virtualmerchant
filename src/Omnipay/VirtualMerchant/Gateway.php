@@ -91,5 +91,4 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\VirtualMerchant\Message\VoidRequest', $parameters);
     }
-
 }
